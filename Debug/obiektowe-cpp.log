@@ -1,0 +1,6 @@
+﻿  Camera.cpp
+C:\Users\Krzysztof\source\repos\obiektowe-cpp\obiektowe-cpp\Camera.cpp(53,35): warning C4244: "return": konwersja z "double" do "int", możliwa utrata danych
+  obiektowe-cpp.cpp
+  VideocasetteRecorder.cpp
+  Generowanie kodu...
+  obiektowe-cpp.vcxproj -> C:\Users\Krzysztof\source\repos\obiektowe-cpp\Debug\obiektowe-cpp.exe
