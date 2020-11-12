@@ -145,6 +145,7 @@
     <ClCompile Include="obiektowe-cpp.cpp" />
     <ClCompile Include="PortableTV.cpp" />
     <ClCompile Include="Radio.cpp" />
+    <ClCompile Include="Shell.cpp" />
     <ClCompile Include="StationaryTV.cpp" />
     <ClCompile Include="TapeRecorder.cpp" />
     <ClCompile Include="TV.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="PortableTV.h" />
     <ClInclude Include="Radio.h" />
+    <ClInclude Include="Shell.h" />
     <ClInclude Include="StationaryTV.h" />
     <ClInclude Include="TapeRecorder.h" />
     <ClInclude Include="TV.h" />

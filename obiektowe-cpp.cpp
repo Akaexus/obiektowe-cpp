@@ -2,18 +2,13 @@
 //
 
 #include <iostream>
-#include "TapeRecorder.h"
-#include "CDPlayer.h"
-#include "Radio.h"
-#include "Camera.h"
+#include <string>
+#include "Shell.h"
 
 int main()
 {
-    TapeRecorder unitra;
-    CDPlayer sony;
-    Radio rammstein;
-    Camera camera;
-    std::cout << unitra.getFeatures();
+    Shell sh;
+    sh.run();    
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
