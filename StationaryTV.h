@@ -14,5 +14,6 @@ class StationaryTV :
         bool isSmart();
         StationaryTV();
         StationaryTV(int size, double r, bool s, bool w);
+        static Equipment<double> create(std::vector<std::string>);
 };
 

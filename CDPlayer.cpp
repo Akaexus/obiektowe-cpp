@@ -47,3 +47,8 @@ int CDPlayer::getFeatures()
 {
 	return 0;
 }
+
+Equipment<double> CDPlayer::create(std::vector<std::string>)
+{
+	return CDPlayer();
+}

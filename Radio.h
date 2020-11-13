@@ -13,5 +13,7 @@ class Radio :
         bool setSpeakers(int s);
         int getMemorySize();
         int getSpeakers();
+        static Radio* create(std::vector<std::string>);
+        std::string about();
 };
 

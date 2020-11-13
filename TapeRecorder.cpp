@@ -1,4 +1,5 @@
 #include "TapeRecorder.h"
+
 int TapeRecorder::getFeatures()
 {
 	return 0;
@@ -21,4 +22,9 @@ TapeRecorder::TapeRecorder(double power, double f_start, double f_end, double sp
 		pths = 1;
 	}
 	this->paths = pths;
+}
+
+Equipment<double> TapeRecorder::create(std::vector<std::string>)
+{
+	return TapeRecorder();
 }

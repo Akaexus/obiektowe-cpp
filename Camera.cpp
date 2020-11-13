@@ -52,3 +52,8 @@ int Camera::getNumberOfColors()
 {
     return this->getFocalLength() * this->getOpticalZoom();
 }
+
+Equipment<double> Camera::create(std::vector<std::string>)
+{
+    return Camera();
+}

@@ -33,3 +33,8 @@ StationaryTV::StationaryTV(int size, double r, bool s, bool w)
 	this->setSmart(s);
 	this->setWifi(w);
 }
+
+Equipment<double> StationaryTV::create(std::vector<std::string>)
+{
+	return Equipment<double>();
+}

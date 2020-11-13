@@ -41,3 +41,8 @@ PortableTV::PortableTV(int size, double ratio, double w, double a)
 	
 	this->portableAntenna = a;
 }
+
+Equipment<double> PortableTV::create(std::vector<std::string>)
+{
+	return Equipment<double>();
+}

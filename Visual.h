@@ -4,7 +4,7 @@
 #include <array>
 
 class Visual
-	: Equipment<double>
+	: public Equipment<double>
 {
 	private:
 		std::array<int, 2> resolution = { 640, 480 };

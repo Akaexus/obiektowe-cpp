@@ -18,5 +18,6 @@ class VideocasetteRecorder :
         VideocasetteRecorder();
         VideocasetteRecorder(std::string mode, std::array <int, 2> res, int n, bool ach);
         int getNumberOfColors();
+        static Equipment<double> create(std::vector<std::string>);
 };
 

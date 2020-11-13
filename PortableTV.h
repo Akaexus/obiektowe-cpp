@@ -14,5 +14,6 @@ class PortableTV :
         bool setPortableAntenna(bool a);
         PortableTV();
         PortableTV(int size, double ratio, double w, double a);
+        static Equipment<double> create(std::vector<std::string>);
 };
 

@@ -50,3 +50,8 @@ int VideocasetteRecorder::getNumberOfColors()
     return n + n * this->haveAutocleaningHeads();
 }
 
+Equipment<double> VideocasetteRecorder::create(std::vector<std::string>)
+{
+    return VideocasetteRecorder();
+}
+
