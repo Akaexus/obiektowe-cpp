@@ -17,10 +17,6 @@
 
 Storage::Storage()
 {
-	/*Radio xd = Radio();
-	Equipment<double>* heh = &xd;
-	std::string dupa = (*heh).about();
-	std::cout << dupa;*/
 	this->classes.insert({
 		"Equipment", // key
 		{
@@ -152,19 +148,11 @@ Storage::Storage()
 	this->classes["TV"].children.push_back(&this->classes["StationaryTV"]);
 
 	// set current node to root node
-	std::string rootNode = this->classes.begin()->first;
+	this->rootNode = this->classes.begin()->first;
 	while (this->classes[rootNode].parent != nullptr) {
-		rootNode = this->classes[rootNode].parent->name;
+		this->rootNode = this->classes[rootNode].parent->name;
 	}
-	this->changeNode(rootNode);
-	// test
-	std::vector<std::string> xd;
-	//class_fctry fn = this->classes["Radio"].create;
-	Equipment<double>* (*class_fctry)(std::vector<std::string>) = this->classes["Radio"].create;
-	Equipment<double>* element = (*class_fctry)(xd);
-	std::cout << (*element).about();
-	//(*fn);
-	//Equipment<double>* element = (*this->classes["Radio"].create)(xd);
+	this->changeNode(this->rootNode);
 }
 
 bool Storage::changeNode(std::string nm)
@@ -172,6 +160,9 @@ bool Storage::changeNode(std::string nm)
 	if (this->classes.count(nm)) {
 		this->currentNode = nm;
 		return true;
+	}
+	else if (nm == "") {
+		this->changeNode(this->rootNode);
 	}
 	return false;
 }
@@ -181,20 +172,43 @@ std::string Storage::getCurrentNode()
 	return this->currentNode;
 }
 
-std::string Storage::tree()
+std::string Storage::tree(std::string base, bool includeObjects)
 {
-	return this->reccuringTree(&this->classes["Equipment"]);
+	if (base == "") {
+		base = this->rootNode;
+	}
+	return this->reccuringTree(&this->classes[base], includeObjects);
 }
 
-std::string Storage::reccuringTree(struct Node* node, int level)
+std::map<std::string, Equipment<double>*>* Storage::getObjects()
+{
+	return &this->classes[this->getCurrentNode()].objects;
+}
+
+
+
+std::string Storage::reccuringTree(struct Node* node, bool includeObjects, int level)
 {
 	std::stringstream s;
-	for (int i = 0; i < (level * 3); i++) {
-		s << " ";
+	if (!includeObjects) {
+		for (int i = 0; i < (level * 3); i++) {
+			s << " ";
+		}
 	}
 	s << node->name << "\n";
+	if (includeObjects) {
+		if (this->classes[node->name].objects.size()) {
+			for (std::map<std::string, Equipment<double>*>::iterator it = this->classes[node->name].objects.begin();
+				it != this->classes[node->name].objects.end(); it++) {
+				s << "  * " << it->first << "\n";
+			}
+		}
+		else {
+			s << "  No objects found!\n";
+		}
+	}
 	for (int i = 0; i < node->children.size(); i++) {
-		s << this->reccuringTree(node->children[i], level + 1);
+		s << this->reccuringTree(node->children[i], includeObjects, level + 1);
 	}
 	return s.str();
 }

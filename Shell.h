@@ -16,5 +16,10 @@ class Shell
 		std::vector<std::string> splitCommand(std::string cmd);
 		cmd_ptr getCommand(std::string cmd);
 		std::string _tree(arg_array args);
+		std::string _cd(arg_array args);
+		std::string _makeObject(arg_array args);
+		std::string _dir(arg_array args);
+		std::string _show(arg_array args);
+		std::string _exit(arg_array args);
 };
 

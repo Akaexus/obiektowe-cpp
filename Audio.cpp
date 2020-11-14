@@ -36,6 +36,7 @@ std::string Audio::about()
 	std::stringstream s;
 	s << Equipment<double>::about();
 	s << "Frequency: " << this->frequency_start << " - "
-		<< this->frequency_end << "Hz\n";
+		<< this->frequency_end << "Hz"
+		<< "\nPower: " << this->power << "W\n";
 	return s.str();
 }

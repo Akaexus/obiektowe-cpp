@@ -14,17 +14,20 @@ class Storage
 			std::vector<Node*> children;
 			class_fctry create = nullptr;
 		} Node;
-		std::map<std::string, struct Node> classes;
 		//typedef Equipment <double>(*)(Shell::arg_array) crt_fnct;
 		//std::map<std::string, Equipment <double>(*)(std::vector<std::string>)> factories;
 		std::string currentNode;
+		std::string rootNode;
 	public:
 		Storage();
 		bool changeNode(std::string nm);
 		std::string getCurrentNode();
-		std::string tree();
+		std::string tree(std::string base = "", bool includeObjects = false);
+		std::map<std::string, struct Node> classes;
+		std::map<std::string, Equipment<double>*>* getObjects();
 	private:
-		std::string reccuringTree(struct Node* node, int level = 0);
+		std::string reccuringTree(struct Node* node, bool includeObjects = false, int level = 0);
+
 
 
 		
