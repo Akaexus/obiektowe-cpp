@@ -17,7 +17,7 @@ void Shell::run()
 		else {
 			args.erase(args.begin());
 			output = (this->*cmd)(args);
-			std::cout << (this->*cmd)(args) << (output.length() ? "\n": "");
+			std::cout << output << (output.length() ? "\n": "");
 		}
 	}
 }
@@ -100,6 +100,10 @@ Shell::cmd_ptr Shell::getCommand(std::string cmd)
 			&Shell::_dir
 		},
 		{
+			"do",
+			&Shell::_deleteObject
+		},
+		{
 			"mo",
 			&Shell::_makeObject
 		},
@@ -146,6 +150,23 @@ std::string Shell::_show(arg_array args)
 		return "SHOW: Object " + args[0] + " not found";
 	}
 	return "===Object " + args[0] + "===\n" + (*this->storage.getObjects())[args[0]]->about();
+}
+
+std::string Shell::_deleteObject(arg_array args)
+{
+	if (args.size() < 1) {
+		return "DO: Object name not provided";
+	}
+	std::string objName = args[0];
+	std::map<std::string, Equipment<double>*>* objects = this->storage.getObjects();
+	if ((*objects).count(args[0]) == 0) {
+		return "DO: Object " + args[0] + " not found";
+	}
+	Equipment<double>* obj = (*objects)[args[0]];
+	free(obj);
+	(*objects).erase(args[0]);
+	return "Object " + args[0] + " succesfully deleted";
+	
 }
 
 std::string Shell::_exit(arg_array args)

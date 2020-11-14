@@ -199,7 +199,9 @@ std::string Storage::reccuringTree(struct Node* node, bool includeObjects, int l
 	if (includeObjects) {
 		if (this->classes[node->name].objects.size()) {
 			for (std::map<std::string, Equipment<double>*>::iterator it = this->classes[node->name].objects.begin();
-				it != this->classes[node->name].objects.end(); it++) {
+				it != this->classes[node->name].objects.end();
+				it++
+			) {
 				s << "  * " << it->first << "\n";
 			}
 		}
