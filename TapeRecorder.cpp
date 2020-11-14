@@ -1,11 +1,6 @@
 #include "TapeRecorder.h"
 #include <sstream>
 
-int TapeRecorder::getFeatures()
-{
-	return 0;
-}
-
 TapeRecorder::TapeRecorder()
 	: Audio() {
 	this->speed = 9.37;
@@ -38,4 +33,24 @@ std::string TapeRecorder::about()
 	s << "Speed: " << this->speed
 		<< "\nPaths: " << this->paths << "\n";
 	return s.str();
+}
+
+void TapeRecorder::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 2) {
+		std::vector<std::string> pv(v.begin() + 2, v.end());
+		Audio::importData(pv);
+		this->speed = std::stod(v[0]);
+		this->paths = std::stoi(v[1]);
+	}
+}
+
+std::vector<std::string> TapeRecorder::exportData()
+{
+	std::vector<std::string> pv = Audio::exportData(), v = {
+		std::to_string(this->speed),
+		std::to_string(this->paths),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
 }

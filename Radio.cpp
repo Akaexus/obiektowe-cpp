@@ -2,11 +2,6 @@
 #include <sstream>
 #include <iostream>
 
-int Radio::getFeatures()
-{
-	return 0;
-}
-
 bool Radio::setMemorySize(int m)
 {
 	if (m > 0) {
@@ -48,4 +43,24 @@ std::string Radio::about()
 	s << "Memory size: " << this->getMemorySize() << " slots\n"
 		<< "Speakers: " << this->getSpeakers() << "\n";
 	return s.str();
+}
+
+void Radio::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 2) {
+		std::vector<std::string> pv(v.begin() + 2, v.end());
+		Audio::importData(pv);
+		this->setMemorySize(std::stoi(v[0]));
+		this->setSpeakers(std::stoi(v[1]));
+	}
+}
+
+std::vector<std::string> Radio::exportData()
+{
+	std::vector<std::string> pv = Audio::exportData(), v = {
+		std::to_string(this->getMemorySize()),
+		std::to_string(this->getSpeakers()),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
 }

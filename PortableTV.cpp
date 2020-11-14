@@ -57,3 +57,23 @@ std::string PortableTV::about()
 		<< "\nPortable antenna: " << (this->isAntennaPortable() ? "yes" : "no") << "\n";
 	return s.str();
 }
+
+void PortableTV::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 2) {
+		std::vector<std::string> pv(v.begin() + 2, v.end());
+		TV::importData(pv);
+		this->setWeight(std::stod(v[0]));
+		this->setPortableAntenna(std::stoi(v[1]));
+	}
+}
+
+std::vector<std::string> PortableTV::exportData()
+{
+	std::vector<std::string> pv = TV::exportData(), v = {
+		std::to_string(this->getWeight()),
+		std::to_string((int)this->isAntennaPortable()),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
+}

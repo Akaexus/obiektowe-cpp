@@ -66,3 +66,22 @@ std::string VideocasetteRecorder::about()
     return s.str();
 }
 
+void VideocasetteRecorder::importData(std::vector<std::string> v)
+{
+    if (v.size() >= 2) {
+        std::vector<std::string> pv(v.begin() + 2, v.end());
+        Visual::importData(pv);
+        this->setAutocleaningHeads(std::stoi(v[0]));
+        this->setNumberOfHeads(std::stoi(v[1]));
+    }
+}
+
+std::vector<std::string> VideocasetteRecorder::exportData()
+{
+    std::vector<std::string> pv = Visual::exportData(), v = {
+        std::to_string((int)this->haveAutocleaningHeads()),
+        std::to_string(this->getNumberOfHeads()),
+    };
+    v.insert(v.end(), pv.begin(), pv.end());
+    return v;
+}

@@ -40,3 +40,25 @@ std::string Audio::about()
 		<< "\nPower: " << this->power << "W\n";
 	return s.str();
 }
+// Audio | Equipment<double>
+void Audio::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 3) {
+		std::vector<std::string> pv(v.begin() + 3, v.end());
+		Equipment<double>::importData(pv);
+		this->power = std::stod(v[0]);
+		this->frequency_start = std::stod(v[1]);
+		this->frequency_end = std::stod(v[2]);
+	}
+}
+
+std::vector<std::string> Audio::exportData()
+{
+	std::vector<std::string> pv = Equipment<double>::exportData(), v = {
+		std::to_string(this->power),
+		std::to_string(this->frequency_start),
+		std::to_string(this->frequency_end),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
+}

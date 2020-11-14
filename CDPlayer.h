@@ -15,8 +15,9 @@ class CDPlayer :
         std::string getDisplayColor();
         CDPlayer();
         CDPlayer(double power, double f_start, double f_end, bool remoteIncluded, std::string displayColor);
-        int getFeatures();
         static Equipment<double>* create(std::vector<std::string>);
         std::string about();
+        void importData(std::vector<std::string> v);
+        std::vector<std::string> exportData();
 };
 

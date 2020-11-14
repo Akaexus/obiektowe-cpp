@@ -68,3 +68,23 @@ std::string Camera::about()
         << "Optical zoom: " << this->getOpticalZoom() << "x\n";
     return s.str();
 }
+
+void Camera::importData(std::vector<std::string> v)
+{
+    if (v.size() >= 2) {
+        std::vector<std::string> pv(v.begin() + 2, v.end());
+        Visual::importData(pv);
+        this->setFocalLength(std::stod(v[0]));
+        this->setOpticalZoom(std::stod(v[1]));
+    }
+}
+
+std::vector<std::string> Camera::exportData()
+{
+    std::vector<std::string> pv = Visual::exportData(), v = {
+        std::to_string(this->getFocalLength()),
+        std::to_string(this->getOpticalZoom()),
+    };
+    v.insert(v.end(), pv.begin(), pv.end());
+    return v;
+}

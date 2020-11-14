@@ -19,5 +19,7 @@ class Camera :
         int getNumberOfColors();
         static Equipment<double>* create(std::vector<std::string>);
         std::string about();
+        void importData(std::vector<std::string> v);
+        std::vector<std::string> exportData();
 };
 

@@ -32,6 +32,28 @@ std::string Visual::about()
 	return s.str();
 }
 
+void Visual::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 3) {
+		std::vector<std::string> pv(v.begin() + 2, v.end());
+		Equipment<double>::importData(pv);
+		this->resolution[0] = std::stod(v[0]);
+		this->resolution[1] = std::stod(v[1]);
+		this->mode = v[2];
+	}
+}
+
+std::vector<std::string> Visual::exportData()
+{
+	std::vector<std::string> pv = Equipment<double>::exportData(), v = {
+		std::to_string(this->resolution[0]),
+		std::to_string(this->resolution[1]),
+		this->mode,
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
+}
+
 Visual::Visual(std::string m, std::array<int, 2> res)
 {
 	if (!this->setMode(m)) {

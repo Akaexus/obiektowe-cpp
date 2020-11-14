@@ -11,7 +11,8 @@ class Audio :
     public:
         Audio();
         Audio(double pwr, double f_start, double f_end);
-        virtual int getFeatures() = 0;
         virtual std::string about();
+        virtual void importData(std::vector<std::string> v);
+        virtual std::vector<std::string> exportData();
 };
 

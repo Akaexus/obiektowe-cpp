@@ -1,11 +1,6 @@
 #include "TV.h"
 #include <sstream>
 
-int TV::getFeatures()
-{
-	return 0;
-}
-
 int TV::getNumberOfColors()
 {
 	if (this->mode == "SCAM") {
@@ -68,4 +63,32 @@ TV::TV(int size, double ratio)
 	if (!this->setScreenRatio(ratio)) {
 		this->setScreenRatio(16.0 / 9.0);
 	}
+}
+
+
+void TV::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 2) {
+		std::vector<std::string> pv(v.begin() + 2, v.begin() + 5);
+		Audio::importData(pv);
+		if (v.size() >= 5) {
+			std::vector<std::string> pv2(v.begin() + 5, v.end());
+			Visual::importData(pv2);
+		}
+		this->setScreenSize(std::stoi(v[0]));
+		this->setScreenRatio(std::stod(v[1]));
+	}
+}
+
+std::vector<std::string> TV::exportData()
+{
+	std::vector<std::string> pv = Audio::exportData(),
+		pv2 = Visual::exportData(),
+		v = {
+		std::to_string(this->getScreenSize()),
+		std::to_string(this->getScreenRatio()),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	v.insert(v.end(), pv2.begin(), pv2.end());
+	return v;
 }

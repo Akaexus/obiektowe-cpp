@@ -45,10 +45,6 @@ CDPlayer::CDPlayer(double power, double f_start, double f_end, bool remoteInclud
 
 }
 
-int CDPlayer::getFeatures()
-{
-	return 0;
-}
 
 Equipment<double>* CDPlayer::create(std::vector<std::string>)
 {
@@ -63,4 +59,24 @@ std::string CDPlayer::about()
 	s << "Remote included: " << (this->isRemoteIncluded() ? "yes" : "no")
 		<< "\nDisplay color: " << this->getDisplayColor() << "\n";
 	return s.str();
+}
+
+void CDPlayer::importData(std::vector<std::string> v)
+{
+	if (v.size() >= 2) {
+		std::vector<std::string> pv(v.begin() + 2, v.end());
+		Audio::importData(pv);
+		this->remoteIncluded = std::stoi(v[0]);
+		this->setDisplayColor(v[1]);
+	}
+}
+
+std::vector<std::string> CDPlayer::exportData()
+{
+	std::vector<std::string> pv = Audio::exportData(), v = {
+		std::to_string((int)this->isRemoteIncluded()),
+		this->getDisplayColor(),
+	};
+	v.insert(v.end(), pv.begin(), pv.end());
+	return v;
 }

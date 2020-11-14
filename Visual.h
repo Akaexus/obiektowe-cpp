@@ -16,5 +16,7 @@ class Visual
 		bool setMode(std::string m);
 		virtual int getNumberOfColors() = 0;
 		virtual std::string about();
+		virtual void importData(std::vector<std::string> v);
+		virtual std::vector<std::string> exportData();
 };
 
