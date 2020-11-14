@@ -1,8 +1,5 @@
 ﻿// obiektowe-cpp.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
-
-#include <iostream>
-#include <string>
 #include "Shell.h"
 
 int main()
@@ -10,6 +7,7 @@ int main()
     Shell sh;
     sh.run();    
 }
+
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
 // Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie

@@ -1,4 +1,5 @@
 #include "Audio.h"
+#include <sstream>
 
 Audio::Audio() {
 	this->power = 15;
@@ -28,4 +29,13 @@ Audio::Audio(double pwr, double f_start, double f_end)
 		this->frequency_start = f_start;
 		this->frequency_end = f_end;
 	}
+}
+
+std::string Audio::about()
+{
+	std::stringstream s;
+	s << Equipment<double>::about();
+	s << "Frequency: " << this->frequency_start << " - "
+		<< this->frequency_end << "Hz\n";
+	return s.str();
 }

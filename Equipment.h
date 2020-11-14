@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+#include <vector>
+#include <sstream>
 template <typename T>
 class Equipment
 {
@@ -7,6 +10,7 @@ class Equipment
 		T getCurrentFrequency();
 		T getVoltage();
 		bool setVoltage(T v);
+		virtual std::string about();
 
 	protected:
 		T voltage;
@@ -41,4 +45,13 @@ inline bool Equipment<T>::setVoltage(T v)
 		return true;
 	}
 	return false;
+}
+
+template<typename T>
+inline std::string Equipment<T>::about()
+{
+	std::stringstream s;
+	s << "Current frequency: " << this->getCurrentFrequency() << "Hz\n" <<
+		"Voltage: " << this->getVoltage() << "V\n";
+	return s.str();
 }

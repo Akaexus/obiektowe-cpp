@@ -1,4 +1,5 @@
 #include "TV.h"
+#include <sstream>
 
 int TV::getFeatures()
 {
@@ -39,6 +40,16 @@ bool TV::setScreenSize(int size)
 	}
 	this->screenSize = size;
 	return true;
+}
+
+std::string TV::about()
+{
+	std::stringstream s;
+	s << Audio::about();
+	s << Visual::about();
+	s << "Number of colors: " << this->getNumberOfColors()
+		<< "\nScreen ratio: " << this->getScreenRatio() << "\n";
+	return s.str();
 }
 
 

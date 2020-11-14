@@ -11,5 +11,7 @@ class TapeRecorder :
         int getFeatures();
         TapeRecorder();
         TapeRecorder(double power, double f_start, double f_end, double spd, int pths);
+        static Equipment<double>* create(std::vector<std::string>);
+        std::string about();
 };
 

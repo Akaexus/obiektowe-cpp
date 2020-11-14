@@ -1,4 +1,6 @@
 #include "TapeRecorder.h"
+#include <sstream>
+
 int TapeRecorder::getFeatures()
 {
 	return 0;
@@ -21,4 +23,19 @@ TapeRecorder::TapeRecorder(double power, double f_start, double f_end, double sp
 		pths = 1;
 	}
 	this->paths = pths;
+}
+
+Equipment<double>* TapeRecorder::create(std::vector<std::string>)
+{
+	TapeRecorder* o = new TapeRecorder();
+	return o;
+}
+
+std::string TapeRecorder::about()
+{
+	std::stringstream s;
+	s << Audio::about();
+	s << "Speed: " << this->speed
+		<< "\nPaths: " << this->paths << "\n";
+	return s.str();
 }

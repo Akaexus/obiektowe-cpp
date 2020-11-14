@@ -1,7 +1,7 @@
 #pragma once
 #include "Equipment.h"
 class Audio :
-    Equipment<double>
+    public Equipment<double>
 {
     protected:
         double power;
@@ -12,5 +12,6 @@ class Audio :
         Audio();
         Audio(double pwr, double f_start, double f_end);
         virtual int getFeatures() = 0;
+        virtual std::string about();
 };
 

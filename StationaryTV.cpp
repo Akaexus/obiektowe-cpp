@@ -33,3 +33,18 @@ StationaryTV::StationaryTV(int size, double r, bool s, bool w)
 	this->setSmart(s);
 	this->setWifi(w);
 }
+
+Equipment<double>* StationaryTV::create(std::vector<std::string>)
+{
+	StationaryTV* o = new StationaryTV();
+	return (Audio*)o;
+}
+
+std::string StationaryTV::about()
+{
+	std::stringstream s;
+	s << TV::about();
+	s << "Smart: " << (this->isSmart() ? "yes" : "no")
+		<< "Wi-Fi: " << (this->haveWifi() ? "yes" : "no") << "\n";
+	return s.str();
+}

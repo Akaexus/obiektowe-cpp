@@ -1,4 +1,6 @@
 #include "CDPlayer.h"
+#include <sstream>
+
 bool CDPlayer::isRemoteIncluded()
 {
 	return this->remoteIncluded;
@@ -46,4 +48,19 @@ CDPlayer::CDPlayer(double power, double f_start, double f_end, bool remoteInclud
 int CDPlayer::getFeatures()
 {
 	return 0;
+}
+
+Equipment<double>* CDPlayer::create(std::vector<std::string>)
+{
+	CDPlayer* o = new CDPlayer();
+	return o;
+}
+
+std::string CDPlayer::about()
+{
+	std::stringstream s;
+	s << Audio::about();
+	s << "Remote included: " << (this->isRemoteIncluded() ? "yes" : "no")
+		<< "\nDisplay color: " << this->getDisplayColor() << "\n";
+	return s.str();
 }

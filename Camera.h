@@ -17,5 +17,7 @@ class Camera :
         Camera();
         Camera(std::string mode, std::array<int, 2> res, double f, double z);
         int getNumberOfColors();
+        static Equipment<double>* create(std::vector<std::string>);
+        std::string about();
 };
 

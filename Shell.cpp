@@ -22,7 +22,8 @@ void Shell::run()
 
 std::string Shell::getCommandPrompt()
 {
-	return "> ";
+	std::cout << this->storage.getCurrentNode();
+	return ":~$ ";
 }
 
 std::vector<std::string> Shell::inputCommand()
@@ -39,7 +40,7 @@ std::vector<std::string> Shell::splitCommand(std::string cmd)
 {
 	std::vector<std::string> cmds;
 	std::string buffer;
-	for (int i = 0; i < cmd.size(); i++) {
+	for (int i = 0; i < cmd.length(); i++) {
 		if (cmd[i] == ' ' && buffer.size() > 0) {
 			cmds.push_back(buffer);
 			buffer = "";
@@ -54,9 +55,9 @@ std::vector<std::string> Shell::splitCommand(std::string cmd)
 	return cmds;
 }
 
-std::string Shell::testFunction(arg_array args)
+std::string Shell::_tree(arg_array args)
 {
-	return "2137";
+	return this->storage.tree();
 }
 
 Shell::cmd_ptr Shell::getCommand(std::string cmd)
@@ -64,8 +65,8 @@ Shell::cmd_ptr Shell::getCommand(std::string cmd)
 	std::transform(cmd.begin(), cmd.end(), cmd.begin(), std::tolower);
 	std::map<std::string, cmd_ptr> commands	= {
 		{
-			"testfunction",
-			&Shell::testFunction
+			"tree",
+			&Shell::_tree
 		}
 	};
 	// commands.insert({"testFunction", 5});

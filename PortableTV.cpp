@@ -1,4 +1,5 @@
 #include "PortableTV.h"
+#include <sstream>
 double PortableTV::getWeight()
 {
 	return this->weight;
@@ -40,4 +41,19 @@ PortableTV::PortableTV(int size, double ratio, double w, double a)
 	this->weight = w;
 	
 	this->portableAntenna = a;
+}
+
+Equipment<double>* PortableTV::create(std::vector<std::string>)
+{
+	PortableTV* o = new PortableTV();
+	return (Audio*)o;
+}
+
+std::string PortableTV::about()
+{
+	std::stringstream s;
+	s << TV::about();
+	s << "Weight: " << this->getWeight()
+		<< "\nPortable antenna: " << (this->isAntennaPortable() ? "yes" : "no") << "\n";
+	return s.str();
 }

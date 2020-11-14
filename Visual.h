@@ -4,7 +4,7 @@
 #include <array>
 
 class Visual
-	: Equipment<double>
+	: public Equipment<double>
 {
 	private:
 		std::array<int, 2> resolution = { 640, 480 };
@@ -15,5 +15,6 @@ class Visual
 		Visual(std::string m, std::array<int, 2> res);
 		bool setMode(std::string m);
 		virtual int getNumberOfColors() = 0;
+		virtual std::string about();
 };
 

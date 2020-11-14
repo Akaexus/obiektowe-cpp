@@ -1,4 +1,5 @@
 #include "VideocasetteRecorder.h"
+#include <sstream>
 
 const int VideocasetteRecorder::DEFAULT_HEADS_NUMBER = 1;
 const bool VideocasetteRecorder::DEFAULT_AUTO_CLEANING_HEADS = false;
@@ -48,5 +49,20 @@ int VideocasetteRecorder::getNumberOfColors()
 {
     int n = this->getNumberOfHeads() * 1024;
     return n + n * this->haveAutocleaningHeads();
+}
+
+Equipment<double>* VideocasetteRecorder::create(std::vector<std::string>)
+{
+    VideocasetteRecorder* o = new VideocasetteRecorder();
+    return o;
+}
+
+std::string VideocasetteRecorder::about()
+{
+    std::stringstream s;
+    s << Visual::about();
+    s << "Number of heads: " << this->getNumberOfHeads()
+        << "Autocleaning heads: " << (this->haveAutocleaningHeads() ? "yes" : "no") << "\n";
+    return s.str();
 }
 

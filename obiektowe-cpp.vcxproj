@@ -147,6 +147,7 @@
     <ClCompile Include="Radio.cpp" />
     <ClCompile Include="Shell.cpp" />
     <ClCompile Include="StationaryTV.cpp" />
+    <ClCompile Include="Storage.cpp" />
     <ClCompile Include="TapeRecorder.cpp" />
     <ClCompile Include="TV.cpp" />
     <ClCompile Include="VideocasetteRecorder.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Radio.h" />
     <ClInclude Include="Shell.h" />
     <ClInclude Include="StationaryTV.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="TapeRecorder.h" />
     <ClInclude Include="TV.h" />
     <ClInclude Include="VideocasetteRecorder.h" />

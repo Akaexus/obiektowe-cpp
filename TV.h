@@ -18,5 +18,6 @@ class TV :
         bool setScreenRatio(double ratio);
         int getScreenSize();
         bool setScreenSize(int size);
+        virtual std::string about();
 };
 

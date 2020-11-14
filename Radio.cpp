@@ -1,4 +1,6 @@
 #include "Radio.h"
+#include <sstream>
+#include <iostream>
 int Radio::getFeatures()
 {
 	return 0;
@@ -30,4 +32,19 @@ int Radio::getMemorySize()
 int Radio::getSpeakers()
 {
 	return this->speakers;
+}
+
+Equipment<double>* Radio::create(std::vector<std::string>)
+{
+	Equipment<double>* xd = new Radio();
+	return xd;
+}
+
+std::string Radio::about()
+{
+	std::stringstream s;
+	s << Audio::about();
+	s << "Memory size: " << this->getMemorySize() << " slots\n"
+		<< "Speakers: " << this->getSpeakers() << "\n";
+	return s.str();
 }
