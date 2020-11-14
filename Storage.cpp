@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <sstream>
 #include "Storage.h"
@@ -156,8 +157,6 @@ Storage::Storage()
 		rootNode = this->classes[rootNode].parent->name;
 	}
 	this->changeNode(rootNode);
-
-
 	// test
 	std::vector<std::string> xd;
 	//class_fctry fn = this->classes["Radio"].create;

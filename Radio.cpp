@@ -1,6 +1,7 @@
 #include "Radio.h"
 #include <sstream>
 #include <iostream>
+
 int Radio::getFeatures()
 {
 	return 0;
@@ -36,8 +37,8 @@ int Radio::getSpeakers()
 
 Equipment<double>* Radio::create(std::vector<std::string>)
 {
-	Equipment<double>* xd = new Radio();
-	return xd;
+	Equipment<double>* o = new Radio();
+	return o;
 }
 
 std::string Radio::about()
