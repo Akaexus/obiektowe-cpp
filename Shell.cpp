@@ -4,23 +4,33 @@
 #include <map>
 #include <cctype>
 #include <algorithm>
+#include <fstream>
 
 void Shell::run()
 {
-	std::string output;
 	while (true) {
 		std::vector<std::string> args = this->inputCommand();
-		Shell::cmd_ptr cmd = this->getCommand(args[0]);
-		if (cmd == nullptr) {
-			std::cout << args[0] << ": command not found\n";
-		}
-		else {
-			args.erase(args.begin());
-			output = (this->*cmd)(args);
-			std::cout << output << (output.length() ? "\n": "");
-		}
+		std::cout << this->runCommand(args);
 	}
 }
+
+std::string Shell::runCommand(std::vector<std::string> args)
+{
+	std::string output;
+	Shell::cmd_ptr cmd = this->getCommand(args[0]);
+	if (cmd == nullptr) {
+		return args[0] + ": command not found\n";
+	}
+	else {
+		args.erase(args.begin());
+		output = (this->*cmd)(args);
+		if (output.length()) {
+			output += "\n";
+		}
+	}
+	return output;
+}
+
 
 std::string Shell::getCommandPrompt()
 {
@@ -112,6 +122,14 @@ Shell::cmd_ptr Shell::getCommand(std::string cmd)
 			&Shell::_modifyObject
 		},
 		{
+			"save",
+			&Shell::_save
+		},
+		{
+			"read",
+			&Shell::_read
+		},
+		{
 			"exit",
 			&Shell::_exit
 		},
@@ -179,6 +197,34 @@ std::string Shell::_show(arg_array args)
 		return "SHOW: Object " + args[0] + " not found";
 	}
 	return "===Object " + args[0] + "===\n" + (*this->storage.getObjects())[args[0]]->about();
+}
+
+std::string Shell::_save(arg_array args)
+{
+	if (args.size() < 1) {
+		return "SAVE: Filename not provided";
+	}
+	std::string dump = this->storage.dump();
+	std::ofstream f;
+	f.open(args[0]);
+	f << dump;
+	f.close();
+	return "Database successfully dumped";
+}
+
+std::string Shell::_read(arg_array args)
+{
+	if (args.size() < 1) {
+		return "READ: Filename not provided";
+	}
+	std::string line;
+	std::ifstream f;
+	f.open(args[0]);
+	while (std::getline(f, line)) {
+		std::vector<std::string> args = this->splitCommand(line);
+		std::cout << this->runCommand(args);
+	}
+	return "";
 }
 
 std::string Shell::_deleteObject(arg_array args)

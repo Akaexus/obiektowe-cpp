@@ -15,6 +15,20 @@
 #include "Camera.h"
 #include "VideocasetteRecorder.h"
 
+std::string Storage::join(std::vector<std::string> v)
+{
+	std::stringstream s;
+	int size = v.size();
+	for (int i = 0; i < size; i++) {
+		s << v[i];
+		if (i < (size - 1)) {
+			s << " ";
+		}
+	}
+	return s.str();
+	return std::string();
+}
+
 Storage::Storage()
 {
 	this->classes.insert({
@@ -185,6 +199,20 @@ std::map<std::string, Equipment<double>*>* Storage::getObjects()
 	return &this->classes[this->getCurrentNode()].objects;
 }
 
+std::string Storage::dump()
+{
+	std::string output;
+	for (std::map<std::string, struct Node>::iterator it = this->classes.begin(); it != this->classes.end(); it++) {
+		if (it->second.objects.size()) {
+			output += "cd " + it->second.name + "\n";
+			for (std::map<std::string, Equipment<double>*>::iterator oit = it->second.objects.begin(); oit != it->second.objects.end(); oit++) {
+				output += "MO " + oit->first + " " + Storage::join(oit->second->exportData()) + "\n";
+			}
+		}
+	}
+	return output;
+}
+
 
 
 std::string Storage::reccuringTree(struct Node* node, bool includeObjects, int level)
@@ -206,7 +234,7 @@ std::string Storage::reccuringTree(struct Node* node, bool includeObjects, int l
 			}
 		}
 		else {
-			s << "  No objects found!\n";
+			s << "  -\n";
 		}
 	}
 	for (int i = 0; i < node->children.size(); i++) {

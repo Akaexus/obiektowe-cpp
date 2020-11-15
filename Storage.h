@@ -18,6 +18,7 @@ class Storage
 		//std::map<std::string, Equipment <double>(*)(std::vector<std::string>)> factories;
 		std::string currentNode;
 		std::string rootNode;
+		static std::string join(std::vector<std::string> v);
 	public:
 		Storage();
 		bool changeNode(std::string nm);
@@ -25,6 +26,7 @@ class Storage
 		std::string tree(std::string base = "", bool includeObjects = false);
 		std::map<std::string, struct Node> classes;
 		std::map<std::string, Equipment<double>*>* getObjects();
+		std::string dump();
 	private:
 		std::string reccuringTree(struct Node* node, bool includeObjects = false, int level = 0);
 
