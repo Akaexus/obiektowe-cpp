@@ -45,6 +45,7 @@ void Audio::importData(std::vector<std::string> v)
 {
 	if (v.size() >= 3) {
 		std::vector<std::string> pv(v.begin() + 3, v.end());
+		
 		Equipment<double>::importData(pv);
 		this->power = std::stod(v[0]);
 		this->frequency_start = std::stod(v[1]);

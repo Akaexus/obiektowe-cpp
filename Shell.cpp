@@ -133,6 +133,8 @@ std::string Shell::_makeObject(arg_array args)
 	if (this->storage.classes[currentNode].create) {
 		Equipment<double>* object = (*this->storage.classes[currentNode].create)(args);
 		this->storage.classes[currentNode].objects[args[0]] = object;
+		args.erase(args.begin());
+		object->importData(args);
 		return "Successfully create object of class " + currentNode;
 	}
 	else {

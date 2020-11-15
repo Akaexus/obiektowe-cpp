@@ -45,7 +45,7 @@ std::string StationaryTV::about()
 	std::stringstream s;
 	s << TV::about();
 	s << "Smart: " << (this->isSmart() ? "yes" : "no")
-		<< "Wi-Fi: " << (this->haveWifi() ? "yes" : "no") << "\n";
+		<< "\nWi-Fi: " << (this->haveWifi() ? "yes" : "no") << "\n";
 	return s.str();
 }
 

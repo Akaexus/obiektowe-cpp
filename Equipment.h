@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
 template <typename T>
 class Equipment
 {
@@ -76,7 +77,7 @@ inline std::string Equipment<T>::about()
 template<typename T>
 inline void Equipment<T>::importData(std::vector<std::string> v)
 {
-	if (v.size() == 2) {
+	if (v.size() >= 2) {
 		this->setVoltage(std::stod(v[0]));
 		this->setCurrentFrequency(std::stod(v[1]));
 	}

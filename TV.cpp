@@ -42,7 +42,7 @@ std::string TV::about()
 	std::stringstream s;
 	s << Audio::about();
 	s << Visual::about();
-	s << "Number of colors: " << this->getNumberOfColors()
+	s << "Screen size: " << this->getScreenSize()
 		<< "\nScreen ratio: " << this->getScreenRatio() << "\n";
 	return s.str();
 }
@@ -69,10 +69,10 @@ TV::TV(int size, double ratio)
 void TV::importData(std::vector<std::string> v)
 {
 	if (v.size() >= 2) {
-		std::vector<std::string> pv(v.begin() + 2, v.begin() + 5);
+		std::vector<std::string> pv(v.begin() + 2, v.end());
 		Audio::importData(pv);
 		if (v.size() >= 5) {
-			std::vector<std::string> pv2(v.begin() + 5, v.end());
+			std::vector<std::string> pv2(v.end() - 5, v.end());
 			Visual::importData(pv2);
 		}
 		this->setScreenSize(std::stoi(v[0]));

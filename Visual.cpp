@@ -35,7 +35,7 @@ std::string Visual::about()
 void Visual::importData(std::vector<std::string> v)
 {
 	if (v.size() >= 3) {
-		std::vector<std::string> pv(v.begin() + 2, v.end());
+		std::vector<std::string> pv(v.begin() + 3, v.end());
 		Equipment<double>::importData(pv);
 		this->resolution[0] = std::stod(v[0]);
 		this->resolution[1] = std::stod(v[1]);
@@ -45,6 +45,7 @@ void Visual::importData(std::vector<std::string> v)
 
 std::vector<std::string> Visual::exportData()
 {
+
 	std::vector<std::string> pv = Equipment<double>::exportData(), v = {
 		std::to_string(this->resolution[0]),
 		std::to_string(this->resolution[1]),
