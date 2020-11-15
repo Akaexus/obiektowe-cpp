@@ -9,6 +9,10 @@ class Camera :
         double focalLength;
     protected:
         double opticalZoom;
+        std::vector<std::string> attribs = {
+            "Focal length",
+            "Optical zoom",
+        };
     public:
         double getFocalLength();
         double getOpticalZoom();
@@ -21,5 +25,6 @@ class Camera :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 

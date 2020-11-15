@@ -108,6 +108,10 @@ Shell::cmd_ptr Shell::getCommand(std::string cmd)
 			&Shell::_makeObject
 		},
 		{
+			"mdo",
+			&Shell::_modifyObject
+		},
+		{
 			"exit",
 			&Shell::_exit
 		},
@@ -134,6 +138,29 @@ std::string Shell::_makeObject(arg_array args)
 	else {
 		return "MO: Can't create object of class " + currentNode;
 	}
+}
+
+std::string Shell::_modifyObject(arg_array args)
+{
+	if (args.size() < 1) {
+		return "MDO: Object name not provided";
+	}
+	std::map<std::string, Equipment<double>*>* objects = this->storage.getObjects();
+	if ((*objects).count(args[0]) == 0) {
+		return "MDO: Object " + args[0] + " not found";
+	}
+	std::vector<std::string> data = (*objects)[args[0]]->exportData();
+	std::vector<std::string> attribNames = (*objects)[args[0]]->getAttribNames();
+	std::string input;
+	for (int i = 0; i < data.size(); i++) {
+		std::cout << attribNames[i] << " [" << data[i] << "]: ";
+		getline(std::cin, input);
+		if (!input.empty()) {
+			data[i] = input;
+		}
+	}
+	(*objects)[args[0]]->importData(data);
+	return "";
 }
 
 std::string Shell::_dir(arg_array args)

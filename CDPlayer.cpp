@@ -80,3 +80,10 @@ std::vector<std::string> CDPlayer::exportData()
 	v.insert(v.end(), pv.begin(), pv.end());
 	return v;
 }
+
+std::vector<std::string> CDPlayer::getAttribNames()
+{
+	std::vector<std::string> parentAttribs = Audio::getAttribNames();
+	parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+	return parentAttribs;
+}

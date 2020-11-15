@@ -68,3 +68,10 @@ std::vector<std::string> StationaryTV::exportData()
 	v.insert(v.end(), pv.begin(), pv.end());
 	return v;
 }
+
+std::vector<std::string> StationaryTV::getAttribNames()
+{
+	std::vector<std::string> parentAttribs = TV::getAttribNames();
+	parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+	return parentAttribs;
+}

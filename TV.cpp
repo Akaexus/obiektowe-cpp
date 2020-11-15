@@ -92,3 +92,13 @@ std::vector<std::string> TV::exportData()
 	v.insert(v.end(), pv2.begin(), pv2.end());
 	return v;
 }
+
+std::vector<std::string> TV::getAttribNames()
+{
+	std::vector<std::string> parentAttribs = Audio::getAttribNames();
+	std::vector<std::string> parent2Attribs = Visual::getAttribNames();
+	parent2Attribs.insert(parent2Attribs.begin(), parentAttribs.begin(), parentAttribs.end());
+	parent2Attribs.insert(parent2Attribs.begin(), this->attribs.begin(), this->attribs.end());
+	return parent2Attribs;
+}
+

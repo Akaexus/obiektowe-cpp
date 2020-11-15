@@ -1,5 +1,7 @@
 #pragma once
 #include "TV.h"
+#include <vector>
+
 class PortableTV :
     public TV
 {
@@ -7,6 +9,10 @@ class PortableTV :
         double weight;
     protected:
         bool portableAntenna;
+        std::vector<std::string> attribs = {
+            "Weight",
+            "Portable antenna",
+        };
     public:
         double getWeight();
         bool setWeight(double w);
@@ -18,5 +24,6 @@ class PortableTV :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 

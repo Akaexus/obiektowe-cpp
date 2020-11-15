@@ -7,6 +7,10 @@ class TapeRecorder :
         double speed; // cm/s
     private:
         int paths;
+        std::vector<std::string> attribs = {
+            "Speed",
+            "Paths",
+        };
     public:
         TapeRecorder();
         TapeRecorder(double power, double f_start, double f_end, double spd, int pths);
@@ -14,5 +18,6 @@ class TapeRecorder :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 

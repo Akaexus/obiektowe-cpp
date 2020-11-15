@@ -9,6 +9,10 @@ class TV :
         int screenSize;
     protected:
         double screenRatio;
+        std::vector<std::string> attribs = {
+            "Screen size",
+            "Screen ratio",
+        };
     public:
         TV();
         TV(int size, double ratio);
@@ -20,5 +24,8 @@ class TV :
         virtual std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        virtual std::vector<std::string> getAttribNames();
+
+
 };
 

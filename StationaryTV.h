@@ -7,6 +7,10 @@ class StationaryTV :
         bool smart = false;
     protected:
         bool wifi = false;
+        std::vector<std::string> attribs = {
+            "SMART",
+            "Wi-Fi",
+        };
     public:
         bool setSmart(bool s);
         bool setWifi(bool w);
@@ -18,5 +22,6 @@ class StationaryTV :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 

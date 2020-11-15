@@ -14,8 +14,13 @@ class Equipment
 		virtual std::string about();
 		virtual void importData(std::vector<std::string> v);
 		virtual std::vector<std::string> exportData();
+		virtual std::vector<std::string> getAttribNames();
 	protected:
 		T voltage;
+		std::vector<std::string> attribs = {
+			"Voltage",
+			"Current frequency",
+		};
 	private:
 		T currentFrequency;
 };
@@ -85,4 +90,10 @@ inline std::vector<std::string> Equipment<T>::exportData()
 		std::to_string(this->getCurrentFrequency())
 	};
 	return v;
+}
+
+template<typename T>
+inline std::vector<std::string> Equipment<T>::getAttribNames()
+{
+	return this->attribs;
 }

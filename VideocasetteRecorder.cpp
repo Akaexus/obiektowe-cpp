@@ -85,3 +85,10 @@ std::vector<std::string> VideocasetteRecorder::exportData()
     v.insert(v.end(), pv.begin(), pv.end());
     return v;
 }
+
+std::vector<std::string> VideocasetteRecorder::getAttribNames()
+{
+    std::vector<std::string> parentAttribs = Visual::getAttribNames();
+    parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+    return parentAttribs;
+}

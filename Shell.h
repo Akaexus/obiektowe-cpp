@@ -18,6 +18,7 @@ class Shell
 		std::string _tree(arg_array args);
 		std::string _cd(arg_array args);
 		std::string _makeObject(arg_array args);
+		std::string _modifyObject(arg_array args);
 		std::string _dir(arg_array args);
 		std::string _show(arg_array args);
 		std::string _deleteObject(arg_array args);

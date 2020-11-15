@@ -65,7 +65,7 @@ std::string Camera::about()
     std::stringstream s;
     s << Visual::about();
     s << "Focal length: " << this->getFocalLength()
-        << "Optical zoom: " << this->getOpticalZoom() << "x\n";
+        << "\nOptical zoom: " << this->getOpticalZoom() << "x\n";
     return s.str();
 }
 
@@ -87,4 +87,11 @@ std::vector<std::string> Camera::exportData()
     };
     v.insert(v.end(), pv.begin(), pv.end());
     return v;
+}
+
+std::vector<std::string> Camera::getAttribNames()
+{
+    std::vector<std::string> parentAttribs = Visual::getAttribNames();
+    parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+    return parentAttribs;
 }

@@ -9,6 +9,10 @@ class CDPlayer :
         bool remoteIncluded;
     protected:
         std::string displayColor;
+        std::vector<std::string> attribs = {
+            "Remote included",
+            "Display color",
+        };
     public:
         bool isRemoteIncluded();
         bool setDisplayColor(std::string color);
@@ -19,5 +23,6 @@ class CDPlayer :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 

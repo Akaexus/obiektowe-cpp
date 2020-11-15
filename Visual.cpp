@@ -54,6 +54,13 @@ std::vector<std::string> Visual::exportData()
 	return v;
 }
 
+std::vector<std::string> Visual::getAttribNames()
+{
+	std::vector<std::string> parentAttribs = Equipment<double>::getAttribNames();
+	parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+	return parentAttribs;
+}
+
 Visual::Visual(std::string m, std::array<int, 2> res)
 {
 	if (!this->setMode(m)) {

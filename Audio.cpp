@@ -62,3 +62,10 @@ std::vector<std::string> Audio::exportData()
 	v.insert(v.end(), pv.begin(), pv.end());
 	return v;
 }
+
+std::vector<std::string> Audio::getAttribNames()
+{
+	std::vector<std::string> parentAttribs = Equipment<double>::getAttribNames();
+	parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
+	return parentAttribs;
+}

@@ -10,6 +10,10 @@ class VideocasetteRecorder :
         bool autoCleaningHeads;
     protected:
         int numberOfHeads;
+        std::vector<std::string> attribs = {
+            "Autocleaning heads: ",
+            "Number of heads",
+        };
     public:
         int getNumberOfHeads();
         bool setNumberOfHeads(int n);
@@ -22,5 +26,6 @@ class VideocasetteRecorder :
         std::string about();
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
+        std::vector<std::string> getAttribNames();
 };
 
