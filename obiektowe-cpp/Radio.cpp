@@ -30,6 +30,16 @@ int Radio::getSpeakers()
 	return this->speakers;
 }
 
+Radio::Radio()
+{
+}
+
+Radio::Radio(int m, int s)
+{
+	this->setMemorySize(m);
+	this->setSpeakers(s);
+}
+
 Equipment<double>* Radio::create(std::vector<std::string>)
 {
 	Equipment<double>* o = new Radio();

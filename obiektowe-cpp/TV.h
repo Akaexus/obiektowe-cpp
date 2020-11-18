@@ -16,7 +16,6 @@ class TV :
     public:
         TV();
         TV(int size, double ratio);
-        int getNumberOfColors();
         double getScreenRatio();
         bool setScreenRatio(double ratio);
         int getScreenSize();

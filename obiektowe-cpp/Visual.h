@@ -20,7 +20,6 @@ class Visual
 		Visual();
 		Visual(std::string m, std::array<int, 2> res);
 		bool setMode(std::string m);
-		virtual int getNumberOfColors() = 0;
 		virtual std::string about();
 		virtual void importData(std::vector<std::string> v);
 		virtual std::vector<std::string> exportData();

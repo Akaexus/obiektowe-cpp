@@ -21,7 +21,6 @@ class VideocasetteRecorder :
         bool setAutocleaningHeads(bool ach);
         VideocasetteRecorder();
         VideocasetteRecorder(std::string mode, std::array <int, 2> res, int n, bool ach);
-        int getNumberOfColors();
         static Equipment<double>* create(std::vector<std::string>);
         std::string about();
         void importData(std::vector<std::string> v);

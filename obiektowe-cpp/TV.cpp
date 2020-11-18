@@ -1,13 +1,6 @@
 #include "TV.h"
 #include <sstream>
 
-int TV::getNumberOfColors()
-{
-	if (this->mode == "SCAM") {
-		return 600;
-	}
-	return 550;
-}
 
 double TV::getScreenRatio()
 {

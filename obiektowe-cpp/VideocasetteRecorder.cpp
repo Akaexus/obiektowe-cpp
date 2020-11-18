@@ -45,11 +45,6 @@ VideocasetteRecorder::VideocasetteRecorder(std::string mode, std::array<int, 2> 
     }
 }
 
-int VideocasetteRecorder::getNumberOfColors()
-{
-    int n = this->getNumberOfHeads() * 1024;
-    return n + n * this->haveAutocleaningHeads();
-}
 
 Equipment<double>* VideocasetteRecorder::create(std::vector<std::string>)
 {

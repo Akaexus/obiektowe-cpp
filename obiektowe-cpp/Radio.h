@@ -18,6 +18,8 @@ class Radio :
         bool setSpeakers(int s);
         int getMemorySize();
         int getSpeakers();
+        Radio();
+        Radio(int m, int s);
         static Equipment<double>* create(std::vector<std::string>);
         std::string about();
         void importData(std::vector<std::string> v);

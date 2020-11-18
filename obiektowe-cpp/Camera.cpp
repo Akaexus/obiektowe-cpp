@@ -49,11 +49,6 @@ Camera::Camera(std::string mode, std::array<int, 2> res, double f, double z)
     }
 }
 
-int Camera::getNumberOfColors()
-{
-    return this->getFocalLength() * this->getOpticalZoom();
-}
-
 Equipment<double>* Camera::create(std::vector<std::string>)
 {
     Camera* o = new Camera();
