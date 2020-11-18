@@ -58,7 +58,8 @@ void Radio::importData(std::vector<std::string> v)
 std::vector<std::string> Radio::exportData()
 {
 	std::vector<std::string> pv = Audio::exportData(), v = {
-		std::to_string(this->getMemorySize()),
+		// std::to_string(this->getMemorySize()),
+		std::to_string((*this)[5]),
 		std::to_string(this->getSpeakers()),
 	};
 	v.insert(v.end(), pv.begin(), pv.end());
@@ -70,4 +71,9 @@ std::vector<std::string> Radio::getAttribNames()
 	std::vector<std::string> parentAttribs = Audio::getAttribNames();
 	parentAttribs.insert(parentAttribs.begin(), this->attribs.begin(), this->attribs.end());
 	return parentAttribs;
+}
+
+int Radio::operator[](int x)
+{
+	return this->getMemorySize();
 }

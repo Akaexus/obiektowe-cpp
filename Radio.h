@@ -23,5 +23,6 @@ class Radio :
         void importData(std::vector<std::string> v);
         std::vector<std::string> exportData();
         std::vector<std::string> getAttribNames();
+        int operator[](int x);
 };
 
